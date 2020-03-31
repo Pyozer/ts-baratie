@@ -7,7 +7,7 @@ import { ReceptionManager } from './ReceptionManager';
 const [, , cookingTime, cookerNumber, stockInterval] = process.argv;
 
 if (isNull(cookingTime, cookerNumber, stockInterval)) {
-    throw 'You must provide arguments !';
+    throw 'You must provide <multiplierCookingTim> <numberOfCooksPerKitchen> <timeInMsToIncreaseStock> arguments';
 }
 
 ReceptionManager.settings = {

@@ -1,7 +1,7 @@
 import { Dish } from './Dish/Dish';
 import { Cooker } from './Cooker';
 import { BaseElement } from './BaseElement';
-import { isNull } from '../utils/Func';
+import { isNull, remove } from '../utils/Func';
 
 export class Kitchen extends BaseElement {
     private _cookers: Cooker[] = [];
@@ -23,7 +23,7 @@ export class Kitchen extends BaseElement {
         return this._dishes.length < this._cookers.length;
     }
 
-    public prepareNewDish(dish: Dish): void {
+    public prepareNewDish(dish: Dish, onDone: () => void): void {
         this._dishes.push(dish);
 
         const cookerAvailable = this._cookers
@@ -33,7 +33,8 @@ export class Kitchen extends BaseElement {
             throw 'No more cooker available in this Kitchen';
         }
         cookerAvailable.prepareDish(dish, () => {
-            // TODO:
+            remove(this._dishes, dish);
+            onDone();
         });
     }
 }

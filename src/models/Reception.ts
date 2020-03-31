@@ -1,7 +1,7 @@
 import { Kitchen } from './Kitchen';
 import { BaseElement } from './BaseElement';
 import { Dish } from './Dish/Dish';
-import { isNull } from '../utils/Func';
+import { isNull, remove } from '../utils/Func';
 
 export class Reception extends BaseElement {
     private _cookersInKitchen: number;
@@ -38,6 +38,14 @@ export class Reception extends BaseElement {
 
     public newDishOrder(dish: Dish): void {
         const kitchen = this.getAvailableKitchen();
-        kitchen.prepareNewDish(dish);
+        kitchen.prepareNewDish(dish, () => {
+            setTimeout(() => {
+                if (kitchen.dishes.length > 0) return;
+                
+                if (remove(this._kitchens, kitchen)) {
+                    console.log(`Kitchen #${kitchen.id} closed`);
+                }
+            }, 5000);
+        });
     }
 }

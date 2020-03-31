@@ -30,6 +30,9 @@ export const onMaster = async (cookingTime: number, cookerNumber: number, stockI
                 shouldExit = true;
             } else if (type === Command.HELP) {
                 console.log(boxen(HELP_TEXT, { padding: 1 }));
+            } else if (type === Command.STATUS) {
+                console.log(boxen('STATUS', { padding: 1 }));
+                ReceptionManager.getInstance().reception.displayStatus();
             } else if (type === Command.DISH) {
                 const dish: Dish = DishFactory.create(args[0], args[1]);
                 const qty = parseInt(args[2]);

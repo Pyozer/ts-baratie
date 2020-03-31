@@ -48,4 +48,9 @@ export class Reception extends BaseElement {
             }, 5000);
         });
     }
+
+    public displayStatus(): void {
+        console.log(`Reception is managing ${this.kitchens.length} kitchen(s)`);
+        this.kitchens.forEach((k) => k.displayStatus());
+    }
 }

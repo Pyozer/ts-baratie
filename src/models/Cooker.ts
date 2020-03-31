@@ -31,4 +31,8 @@ export class Cooker extends BaseElement {
         console.log(`Cooker #${this.id} finish to prepare ${this._dish.name} ${this._dish.sizeStr} (#${this._dish.id})`);
         this._dish = null;
     }
+
+    public displayStatus(): void {
+        console.log(`Cooker is actually ${this.canCook() ? 'not cooking' : `cooking a ${this._dish.name}`}`);
+    }
 }

@@ -37,4 +37,9 @@ export class Kitchen extends BaseElement {
             onDone();
         });
     }
+
+    public displayStatus(): void {
+        console.log(`Kitchen #${this.id} preparing ${this.dishes.length} dishes`);
+        this.cookers.forEach((c) => c.displayStatus());
+    }
 }

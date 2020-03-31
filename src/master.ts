@@ -5,14 +5,8 @@ import prompts from 'prompts';
 import { DishFactory } from './factory/DishFactory';
 import { Dish } from './models/Dish/Dish';
 
-export const onMaster = async (cookingTime: number, cookerNumber: number, stockInterval: number): Promise<void> => {
+export const onMaster = async (): Promise<void> => {
     console.log(boxen('Welcome in Baratie Restaurant :)', { padding: 1 }));
-
-    ReceptionManager.settings = {
-        cookingTime,
-        cookerNumber,
-        stockInterval
-    };
 
     let shouldExit = false;
 

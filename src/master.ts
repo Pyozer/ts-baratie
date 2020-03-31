@@ -38,8 +38,6 @@ export const onMaster = async (cookingTime: number, cookerNumber: number, stockI
                 const qty = parseInt(args[2]);
 
                 for (let i = 0; i < qty; i++) {
-                    console.log('Launch prepare dish');
-                    
                     ReceptionManager.getInstance()
                         .reception
                         .newDishOrder(dish);

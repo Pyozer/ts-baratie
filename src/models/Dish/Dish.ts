@@ -1,7 +1,6 @@
 import { DishFactory } from './../../factory/DishFactory';
 import { BaseElement } from '../BaseElement';
 import { Ingredient } from '../Ingredient';
-import { EnumDictionary } from '../../utils/Func';
 
 export enum DishSize {
     S = 1,
@@ -17,7 +16,7 @@ export enum DishStatus {
     DONE
 }
 
-export type Ingredients = EnumDictionary<Ingredient, number>;
+export type Ingredients = Map<Ingredient, number>;
 
 export abstract class Dish extends BaseElement {
     private _name: string;

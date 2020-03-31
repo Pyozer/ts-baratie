@@ -1,7 +1,7 @@
 import { Dish } from './Dish/Dish';
 import { BaseElement } from './BaseElement';
 import { isNull } from '../utils/Func';
-import { setTimer } from '../utils/Timer';
+import { ReceptionManager } from '../ReceptionManager';
 
 export class Cooker extends BaseElement {
     private _dish: Dish;
@@ -20,10 +20,10 @@ export class Cooker extends BaseElement {
         console.log(`Cooker #${this.id} start preparing ${this._dish.name} ${this._dish.sizeStr} (#${this._dish.id})`);
         this._dish.startPreparing();
 
-        setTimer(dish.bakeTime, () => {
+        setTimeout(() => { 
             this.finishDishPreparing();
             onDone();
-        });
+        }, 1000 * dish.bakeTime * ReceptionManager.settings.cookingTime);
     }
     
     private finishDishPreparing(): void {

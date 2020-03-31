@@ -22,13 +22,13 @@ export class Reception extends BaseElement {
         return kitchen;
     }
 
-    private getAvailableKitchen(): Kitchen {
+    private getAvailableKitchen(dish: Dish): Kitchen {
         if (this._kitchens.length === 0) {
             console.log('No kitchen, create one');
-            return this.createKitchen();
+            this.createKitchen();
         }
 
-        const kitchen = this._kitchens.find(k => k.canHandleNewDish());
+        const kitchen = this._kitchens.find(k => k.canHandleNewDish(dish));
         if (!isNull(kitchen)) {
             return kitchen;
         }
@@ -37,7 +37,7 @@ export class Reception extends BaseElement {
     }
 
     public newDishOrder(dish: Dish): void {
-        const kitchen = this.getAvailableKitchen();
+        const kitchen = this.getAvailableKitchen(dish);
         kitchen.prepareNewDish(dish, () => {
             setTimeout(() => {
                 if (kitchen.dishes.length > 0) return;
